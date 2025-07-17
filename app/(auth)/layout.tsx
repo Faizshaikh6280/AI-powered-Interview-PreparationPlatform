@@ -5,7 +5,7 @@ import React from "react";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
 
-  if (isUserAuthenticated) redirect("/  ");
+  if (isUserAuthenticated) redirect("/");
 
   return <div className="h-screen flex-center">{children}</div>;
 };
