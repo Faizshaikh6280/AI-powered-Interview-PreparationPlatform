@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/app/utils";
+import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
 import { vapi } from "@/lib/vapi.sdk";
 import Image from "next/image";
@@ -23,6 +24,7 @@ function Agent({
   userId,
   interviewId,
   feedbackId,
+  questions,
   type,
 }: AgentProps) {
   const router = useRouter();
@@ -127,17 +129,17 @@ function Agent({
         }
       );
     } else {
-      // let formattedQuestions = "";
-      // if (questions) {
-      //   formattedQuestions = questions
-      //     .map((question) => `- ${question}`)
-      //     .join("\n");
-      // }
-      // await vapi.start(interviewer, {
-      //   variableValues: {
-      //     questions: formattedQuestions,
-      //   },
-      // });
+      let formattedQuestions = "";
+      if (questions) {
+        formattedQuestions = questions
+          .map((question) => `- ${question}`)
+          .join("\n");
+      }
+      await vapi.start(interviewer, {
+        variableValues: {
+          questions: formattedQuestions,
+        },
+      });
     }
   };
   const handleDisconnect = () => {

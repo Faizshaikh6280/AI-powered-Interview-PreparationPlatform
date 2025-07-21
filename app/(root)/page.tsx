@@ -50,11 +50,10 @@ async function Home() {
 
         <div className="interviews-section">
           {hasPastInterviews ? (
-            dummyInterviews?.map((interview) => (
+            userInterviews?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={"user1"}
-                // userId={user?.id}
+                userId={user?.id}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}
