@@ -1,11 +1,15 @@
 import Agent from "@/components/Agent";
+import { getCurrentUser } from "@/lib/actions/auth.action";
+import { redirect } from "next/navigation";
 import React from "react";
 
-function InterviewPage() {
+async function InterviewPage() {
+  const user = await getCurrentUser();
+  if (!user) return redirect("/");
   return (
     <>
       <h1>Interview Generation</h1>
-      <Agent userName="you" userId="user1" type="generate" />
+      <Agent userName={user.name} userId={user?.id} type="generate" />
     </>
   );
 }
